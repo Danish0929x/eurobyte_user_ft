@@ -1,0 +1,175 @@
+
+  .login {
+    font-family: var(--popp);
+    padding: 20px;
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    background-color: var(--background);
+  }
+  
+  .login a {
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    transition: color 0.2s ease;
+  }
+  
+  .login a:hover {
+    text-decoration: underline;
+    color: var(--primary-hover);
+  }
+  
+  .login-logo {
+    width: 150px; /* Slightly larger */
+    transition: transform 0.3s ease;
+  }
+  
+  .login-logo:hover {
+    transform: scale(1.05);
+  }
+  
+  .login-first {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+  }
+  
+  .login-main {
+    width: 450px;
+    margin: auto;
+    display: flex;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px; /* Smoother corners */
+    flex-direction: column;
+    overflow: auto;
+    max-height: 80vh;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .login-main:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  }
+  
+  .loma-first h2 {
+    font-size: 1.8rem; /* Larger heading */
+    color: var(--primary-black);
+    font-family: var(--popp);
+    font-weight: 600; /* Semi-bold */
+    margin-bottom: 5px;
+  }
+  
+  .input-group-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 20px 0px;
+  }
+  
+  .input-group-2 label {
+    font-size: 0.9rem;
+    font-weight: 500; /* Medium weight */
+    color: var(--secondary-black);
+  }
+  
+  .input-group-2 input {
+    padding: 12px 15px;
+    border-radius: 6px;
+    border: 1px solid var(--primary-border);
+    outline: none;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--primary-black);
+    transition: all 0.3s ease;
+  }
+  
+  .input-group-2 input::placeholder {
+    color: #adb5bd;
+  }
+  
+  .input-group-2 input:hover {
+    border-color: var(--primary-color);
+  }
+  
+  .input-group-2 input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--input-focus);
+  }
+
+  .eye-parent {
+    position: relative;
+  }
+
+  .loma-third {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .loma-fourth button {
+    padding: 12px;
+    background-color: var(--primary-color);
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--popp);
+    width: 100%;
+    color: white;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .loma-fourth button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(67, 97, 238, 0.2);
+  }
+  
+  .loma-fourth button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  /* Enhanced eye icon styling */
+  .eye {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    cursor: pointer;
+    color: var(--third-black);
+    transition: color 0.2s ease;
+  }
+  
+  .eye:hover {
+    color: var(--primary-color);
+  }
+  
+  /* Scrollbar styling */
+  .login-main::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .login-main::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  
+  .login-main::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+  }
+  
+  .login-main::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-hover);
+  }

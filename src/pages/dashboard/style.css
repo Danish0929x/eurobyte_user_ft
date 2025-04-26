@@ -1,0 +1,318 @@
+.dashboard-in{
+    max-width: 1300px;
+    margin: auto;
+    padding: 20px;
+    font-family: var(--popp);
+
+}
+
+.dashboard-zero {
+    display: flex;
+    margin: 20px 0px;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .dz-item {
+    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.02);
+    width: calc(25% - 10px);
+    background-color: #ffffff;
+    cursor: pointer;
+    border-radius: 6px;
+  }
+  
+  .dz-item svg {
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+  }
+  
+  .dz-item h2 {
+    font-size: 1rem;
+    color: var(--third-black);
+    font-family: var(--popp);
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+  
+  .dz-item h1 {
+    font-size: 1.7rem;
+    color: var(--secondary-black);
+    font-family: var(--popp);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  .dashboard-first {
+    background-color: white;
+    margin: 20px 0px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.02);
+  }
+  
+  .df-top {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--primary-border);
+  }
+  
+  .df-top .top-head {
+    font-size: 0.8rem;
+    font-family: var(--popp);
+    font-weight: 600;
+    color: var(--primary-black);
+  }
+  
+  .df-main {
+    padding: 15px 20px;
+  }
+  
+  .df-main p {
+    font-size: 0.8rem;
+    font-family: var(--popp);
+    font-weight: 400;
+  }
+  
+  .dashboard-second {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px 0px;
+  }
+  
+  .ds-left {
+    width: 63.5%;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.02);
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    height: 450px;
+  }
+  
+  .ds-left img {
+    width: 460px;
+  }
+  
+  .dsl-down-1 {
+    border: 2px solid var(--primary-border);
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-family: var(--popp);
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    color: var(--primary-color);
+    transition: 0.3s ease;
+  }
+  
+  .dsl-down-1 svg {
+    font-size: 1rem;
+  }
+  .dsl-down-2 {
+    background-color: var(--primary-color);
+    border: 2px solid var(--primary-border);
+  
+    max-width: 400px;
+    justify-content: center;
+    display: flex;
+    margin: 20px auto;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-family: var(--popp);
+    display: flex;
+    justify-content: center;
+    color: var(--primary-white);
+    align-items: center;
+    gap: 15px;
+    transition: 0.3s ease;
+  }
+  
+  .dsl-down-2:hover {
+    transform: scale(1.05);
+  }
+  
+  .dsl-down-1:hover {
+    transform: scale(1.05);
+  }
+  
+  .dsld-icons {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .dsld-icons svg {
+    color: var(--primary-white);
+  }
+  
+  .ds-right {
+    width: 35%;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.02);
+    background-color: #ffffff;
+    padding: 0px 0px 0px;
+    height: 450px;
+  }
+  
+  .dsr-top {
+    padding: 15px 20px;
+    height: 50px;
+    border-bottom: 1px solid var(--primary-border);
+  }
+  
+  .dsr-top .top-head {
+    font-size: 0.8rem;
+    font-family: var(--popp);
+    font-weight: 600;
+    color: var(--primary-black);
+  }
+  
+  .dsr-body {
+    padding: 0px 0px 0px;
+    max-height: calc(100% - 50px);
+    overflow-y: scroll;
+  }
+  
+  .dsr-body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.07);
+    border-radius: 3px;
+    background-color: #f5f5f5;
+  }
+  
+  .dsr-body::-webkit-scrollbar {
+    width: 5px;
+    background-color: #f5f5f5;
+  }
+  
+  .dsr-body::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(193, 193, 193, 0.07);
+    background-color: var(--primary-border);
+  }
+  
+  .dsr-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 0.3px solid var(--primary-border);
+  }
+  
+  .dsr-item:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .dsr-item a {
+    text-decoration: none;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .dsr-item svg {
+    color: var(--primary-color);
+  }
+  
+  .dsr-item a h2 {
+    font-size: 0.8rem;
+    color: var(--third-black);
+    font-weight: 500;
+    font-family: var(--popp);
+  }
+  
+  .dsr-item span {
+    font-size: 0.9rem;
+    color: var(--secondary-black);
+    font-weight: 600;
+    font-family: var(--popp);
+  }
+  
+  .dsri-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .table-para {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    font-family: var(--popp);
+    border-bottom: 1px solid var(--primary-border);
+  }
+  
+  @media only screen and (max-width: 850px) {
+    .main-heading {
+      font-size: 1.2rem !important;
+      /* Add other styles for smaller screens */
+    }
+    .dashboard-zero {
+      display: flex;
+      margin: 20px 0px;
+      width: 100%;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 10px;
+    }
+  
+    .dz-item {
+      width: calc(50% - 10px);
+    }
+  
+    .dashboard-second {
+      flex-direction: column;
+    }
+  
+    .ds-left {
+      width: 100%;
+      margin-bottom: 20px;
+      height: auto;
+    }
+    .ds-left img {
+      width: 90%;
+    }
+  
+    .ds-right {
+      width: 100%;
+    }
+  }
+  
+  @media only screen and (max-width: 400px) {
+    .main-heading {
+      font-size: 1.2rem !important;
+      /* Add other styles for smaller screens */
+    }
+    .dashboard-zero {
+      width: 100%;
+      flex-wrap: wrap;
+      flex-direction: row;
+    }
+  
+    .dz-item {
+      width: calc(100% - 10px);
+    }
+  
+    .dz-item h1 {
+      font-size: 1.3rem;
+    }
+    .df-main p {
+      font-size: 0.7rem;
+    }
+    .dsl-down-1 {
+      font-size: 0.7rem;
+    }
+    .dsl-down-2 {
+      font-size: 0.7rem;
+    }
+    .dsr-item a h2 {
+      font-size: 0.7rem;
+    }
+    .dsr-item a span {
+      font-size: 0.8rem;
+    }
+  }
