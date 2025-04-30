@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const apiURL = "http://localhost:5000/api"; 
-// const apiURL = "https://eurobytebackend.onrender.com/api"; 
+// const apiURL = "http://localhost:5000/api"; 
+const apiURL = "https://eurobytebackend.onrender.com/api"; 
 // const apiURL = process.env.REACT_APP_API_URL; 
 
 export const login = async (userId, password) => {

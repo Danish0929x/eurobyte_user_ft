@@ -3,7 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 import logo from "../../Assets/Images/logo-main.png";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { toast } from "react-toastify";
-import { getReferrerName, register } from "../../service/auth/Auth";
+import { getReferrerName, register } from "../../service/Auth";
 
 function Register() {
   const [formData, setFormData] = useState({

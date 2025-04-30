@@ -4,6 +4,8 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Login from "./pages/login/Login";
 import { ToastContainer } from "react-toastify";
 import Register from "./pages/register/Register";
+import Profile from "./pages/profile/Profile";
+import Team from "./pages/team/Team";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
 
         <Route element={<PrivateRouter />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/team" element={<Team />} />
         </Route>
       </Routes>
 

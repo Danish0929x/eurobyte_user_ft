@@ -17,6 +17,10 @@
 
   /* Background */
   --background:#eef2f6;                /* Soft off-white, warm light grey */
+
+  --border-radius-1: 8px;
+  --box-shadow-1: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 *{

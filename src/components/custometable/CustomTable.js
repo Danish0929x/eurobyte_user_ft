@@ -7,6 +7,7 @@ import {
 } from "react-table";
 import { GlobalFilter } from "./GlobalFilter";
 import { AiOutlineSearch } from "react-icons/ai";
+import "./style.css"; // custom styles or Tailwind
 
 function CustomTable(props) {
   const memoColumns = useMemo(() => props.columns, []);

@@ -1,83 +1,126 @@
-import { FaBriefcase, FaMoneyCheck, FaWallet } from "react-icons/fa";
-import { BsWhatsapp } from "react-icons/bs";
-import { FiCopy, FiLink, FiTwitter } from "react-icons/fi";
-import { RiFacebookCircleLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
-import { AiFillDatabase } from "react-icons/ai";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import "./style.css";
-import CustomTable from "../../components/custometable/CustomTable";
+import Loader from "../../components/loader/Loader";
+import CustomTable from "../../components/custometable/CustomTable"; // Assuming this component is correct
+import { FaDollarSign, FaUserAlt, FaRocket, FaGift, FaWallet } from "react-icons/fa";
+import { HiUsers } from "react-icons/hi"; // Icon for total team business
+import { getDashboard, getPackages } from "../../service/User";
+import "./style.css"; // Assuming this is the correct path for your CSS
+import formatDate from "../../utils/formatDate";
 
 const columns = [
   { Header: "S.No", accessor: "sn" },
-  { Header: "Investment Date", accessor: "date" },
-  { Header: "Amount", accessor: "amount" },
-  { Header: "Token Rate", accessor: "tokenRate" },
-  { Header: "Tokens (ADVB)", accessor: "tokens" },
-  { Header: "Profit", accessor: "profit" },
+  { Header: "Package Amount", accessor: "packageAmount" },
+  { Header: "Start Date", accessor: "startDate" },
   { Header: "Status", accessor: "status" },
 ];
 
-const dummyData = Array.from({ length: 5 }, (_, index) => ({
-  sn: index + 1,
-  date: "01/01/2024",
-  amount: "$0.00",
-  tokenRate: "$0.00",
-  tokens: "$0.00",
-  profit: "$0.00",
-  status: <h4 style={{ color: "green" }}>Active</h4>
-}));
+const Dashboard = () => {
+  const [loading, setLoading] = useState(true);
+  const [packages, setPackages] = useState([]);
+  const [dashboardData, setDashboardData] = useState({ totalInvestment: 0, usdtBalance: 0 });
+  const [dataFetched, setDataFetched] = useState(false); // To track when all data is fetched
 
-function Dashboard() {
-  const userData = JSON.parse(localStorage.getItem("userData"));
-  const userId = localStorage.getItem("userId");
+  // Fetch Dashboard and Packages Data
+  useEffect(() => {
+    const fetchDashboardData = async () => {
+      try {
+        const data = await getDashboard(); 
+        console.log("Dashboard Data:", data); 
+        setDashboardData({
+          totalInvestment: data.totalInvestment,
+          usdtBalance: data.usdtBalance,
+        });
+      } catch (error) {
+        toast.error("Error fetching dashboard data");
+      }
+    };
 
-  // Function to copy the referral link
-  const copyReferralLink = () => {
-    const referralLink = `${window.location.origin}/register?r=${userId}`;
+    const fetchPackagesData = async () => {
+      try {
+        const packagesData = await getPackages();
+        console.log("Fetched Packages Data:", packagesData); // Log packagesData
+        const updatedPackages = packagesData.map((pkg, i) => ({
+          sn: i + 1, 
+          packageAmount: pkg.packageAmount || 0,
+          startDate: formatDate(pkg.startDate) || "none", 
+          status: pkg.status || "none",
+        }));
+        setPackages(updatedPackages); // Update the packages state    
+      } catch (error) {
+        toast.error("Error fetching packages");
+      }
+    };
 
-    const textField = document.createElement("textarea");
-    textField.innerText = referralLink;
-    document.body.appendChild(textField);
-    textField.select();
-    document.execCommand("copy");
-    textField.remove();
-
-    toast.success("Referral link copied to clipboard!");
-  };
+    // Fetch both data simultaneously
+    Promise.all([fetchDashboardData(), fetchPackagesData()]).then(() => {
+      setDataFetched(true);
+      setLoading(false); // Set loading to false after both fetches are done
+    });
+  }, []);
 
   return (
+    <>
+    {loading ? (
+      <Loader />
+    ) : (
     <div className="dashboard">
       <div className="dashboard-in">
         <h1 className="main-heading">Dashboard</h1>
         <div className="dashboard-zero">
           <div className="dz-item">
-            <FaMoneyCheck />
+            <FaDollarSign className="dz-icon" />{" "}
             <h2>Total Investment</h2>
-            <h1>$0.00</h1>
+            <h1>${dashboardData.totalInvestment}</h1> {/* Display dynamic totalInvestment */}
           </div>
           <div className="dz-item">
-            <FaBriefcase />
+            <FaRocket className="dz-icon" />{" "}
             <h2>Total Bonus Earned</h2>
             <h1>$0.00</h1>
           </div>
           <div className="dz-item">
-            <FaWallet />
+            <HiUsers className="dz-icon" />{" "}
             <h2>Total Team Business</h2>
             <h1>$0.00</h1>
           </div>
           <div className="dz-item">
-            <FaWallet />
+            <FaWallet className="dz-icon" />{" "}
             <h2>USDT Wallet</h2>
+            <h1>${dashboardData.usdtBalance}</h1> {/* Display dynamic usdtBalance */}
+          </div>
+        </div>
+
+        <h1 className="main-heading">Rewards</h1>
+        <div className="dashboard-zero">
+          <div className="dz-item">
+            <FaDollarSign className="dz-icon" />{" "}
+            <h2>ROI Bonus</h2>
+            <h1>$0.00</h1>
+          </div>
+          <div className="dz-item">
+            <FaRocket className="dz-icon" />{" "}
+            <h2>Growth Level Bonus</h2>
+            <h1>$0.00</h1>
+          </div>
+          <div className="dz-item">
+            <FaGift className="dz-icon" />{" "}
+            <h2>Direct referral Bonus</h2>
+            <h1>$0.00</h1>
+          </div>
+          <div className="dz-item">
+            <FaUserAlt className="dz-icon" />{" "}
+            <h2>Salary Income</h2>
+            <h1>$0.00</h1>
+          </div>
+          <div className="dz-item">
+            <FaDollarSign className="dz-icon" />{" "}
+            <h2>Royalty Income</h2>
             <h1>$0.00</h1>
           </div>
         </div>
 
+        <h1 className="main-heading">Announcement</h1>
         <div className="dashboard-first">
-          <div className="df-top">
-            <h2 className="top-head">Announcement</h2>
-          </div>
           <div className="df-main">
             <marquee behavior="scroll" direction="left">
               <div>EuroByte Coming Soon!</div>
@@ -85,75 +128,12 @@ function Dashboard() {
           </div>
         </div>
 
-        <div className="dashboard-second">
-          <div className="ds-left">
-            <img
-              src="https://res.cloudinary.com/dev6cpp4u/image/upload/v1696426462/refer-earn-2_zdlybk.png"
-              alt="ds-left"
-            />
-            <div className="dsl-down">
-              <div className="dsl-down-1" onClick={copyReferralLink}>
-                Referral Link <FiLink />
-              </div>
-              <div className="dsl-down-2">
-                Invite friends <FiCopy />
-                <div className="dsld-icons">
-                  <BsWhatsapp />
-                  <RiFacebookCircleLine />
-                  <FiTwitter />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="ds-right">
-            <div className="dsr-top">
-              <h2 className="top-head">Statistics</h2>
-            </div>
-            <div className="dsr-body">
-              <div className="dsr-item">
-                <Link className="dsri-left" to="#">
-                  <AiFillDatabase />
-                  <h2>Package Staking</h2>
-                </Link>
-                <span>$0.00</span>
-              </div>
-              <div className="dsr-item">
-                <Link className="dsri-left" to="#">
-                  <AiFillDatabase />
-                  <h2>Direct Referral Bonus</h2>
-                </Link>
-                <span>$0.00</span>
-              </div>
-              <div className="dsr-item">
-                <Link className="dsri-left" to="#">
-                  <AiFillDatabase />
-                  <h2>Growth Level ROI</h2>
-                </Link>
-                <span>$0.00</span>
-              </div>
-              <div className="dsr-item">
-                <Link className="dsri-left" to="#">
-                  <AiFillDatabase />
-                  <h2>Salary Income</h2>
-                </Link>
-                <span>$0.00</span>
-              </div>
-              <div className="dsr-item">
-                <Link className="dsri-left" to="#">
-                  <AiFillDatabase />
-                  <h2>Royalty Income</h2>
-                </Link>
-                <span>$0.00</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Table Component */}
-        {/* <CustomTable columns={columns} data={dummyData} heading="My Packages" /> */}
+        {/* Conditionally render Loader or Table */}
+        <CustomTable columns={columns} data={packages} heading="My Packages" />
       </div>
     </div>
+    )}
+    </>
   );
 }
 

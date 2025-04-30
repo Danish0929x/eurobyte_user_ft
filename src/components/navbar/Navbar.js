@@ -11,6 +11,7 @@ function Navbar() {
   const location = useLocation();
 
   const toggleMenu = () => setOpen(!open);
+  const closeMenu = () => setOpen(false); // 🔥 New function to close menu
   const toggleDropdown = (index) =>
     setActiveDropdown(activeDropdown === index ? null : index);
 
@@ -44,14 +45,16 @@ function Navbar() {
                       <ul className="dropdown-menu">
                         {item.dropdown.map((subItem, subIdx) => (
                           <li key={subIdx}>
-                            <Link to={subItem.path}>{subItem.label}</Link>
+                            <Link to={subItem.path} onClick={closeMenu}>
+                              {subItem.label}
+                            </Link>
                           </li>
                         ))}
                       </ul>
                     )}
                   </div>
                 ) : (
-                  <Link to={item.path}>
+                  <Link to={item.path} onClick={closeMenu}>
                     {item.icon}
                     {item.label}
                   </Link>

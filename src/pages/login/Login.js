@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { login } from "../../service/auth/Auth.js";
+import { login } from "../../service/Auth.js";
 
 function Login() {
   const [formData, setFormData] = useState({
