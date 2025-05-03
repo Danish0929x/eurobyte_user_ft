@@ -1,28 +1,32 @@
 import axios from "axios";
 
-// const apiURL = "http://localhost:5000/api"; 
-const apiURL = "https://eurobytebackend.onrender.com/api"; 
+// const apiURL = "http://localhost:5000/api";
+const apiURL = "https://eurobytebackend.onrender.com/api";
 
 // Authenticated request (requires token)
-export const MakeAuthenticationRequest = async (endpoint, method = 'GET', data = null) => {
+export const MakeAuthenticationRequest = async (
+  endpoint,
+  method = "GET",
+  data = null
+) => {
   try {
-    const storedUser = localStorage.getItem('userData');
+    const storedUser = localStorage.getItem("userData");
     if (!storedUser) {
-      localStorage.removeItem('userData');
+      localStorage.removeItem("userData");
       throw new Error("User is not authenticated");
     }
 
     const { token } = JSON.parse(storedUser); // ⚡ corrected to authToken
-    console.log(token)
+    console.log(token);
 
     const config = {
       method: method,
       url: `${apiURL}${endpoint}`,
       headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
-      data: data
+      data: data,
     };
 
     const response = await axios(config);
@@ -30,9 +34,9 @@ export const MakeAuthenticationRequest = async (endpoint, method = 'GET', data =
     if (response.status >= 200 && response.status < 300) {
       return response.data;
     } else {
-    //   localStorage.removeItem('userData');
-    //   window.location.href = '/login';
-    //   throw new Error("Failed to make authenticated request!");
+      //   localStorage.removeItem('userData');
+      //   window.location.href = '/login';
+      //   throw new Error("Failed to make authenticated request!");
     }
   } catch (error) {
     // localStorage.removeItem('userData');
@@ -46,15 +50,15 @@ export const MakeAuthenticationRequest = async (endpoint, method = 'GET', data =
 };
 
 // Unauthenticated request (no token)
-export const MakeRequest = async (endpoint, method = 'GET', data = null) => {
+export const MakeRequest = async (endpoint, method = "GET", data = null) => {
   try {
     const config = {
       method: method,
       url: `${apiURL}${endpoint}`,
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      data: data
+      data: data,
     };
 
     const response = await axios(config);
@@ -71,7 +75,10 @@ export const MakeRequest = async (endpoint, method = 'GET', data = null) => {
 
 export const getUserProfile = async () => {
   try {
-    const response = await MakeAuthenticationRequest(`/user/get-profile`, "GET");
+    const response = await MakeAuthenticationRequest(
+      `/user/get-profile`,
+      "GET"
+    );
     return response;
   } catch (error) {
     throw error;
@@ -81,7 +88,11 @@ export const getUserProfile = async () => {
 // UPDATE Profile
 export const updateUserProfile = async (updateData) => {
   try {
-    const response = await MakeAuthenticationRequest(`/user/update-profile`, "PUT", updateData);
+    const response = await MakeAuthenticationRequest(
+      `/user/update-profile`,
+      "PUT",
+      updateData
+    );
     return response;
   } catch (error) {
     throw error;
@@ -90,9 +101,13 @@ export const updateUserProfile = async (updateData) => {
 
 export const getReferralList = async (depthLimit) => {
   try {
-    const response = await MakeAuthenticationRequest("/referral/getreferrals", "POST", {
-      depthLimit: depthLimit, // Send depthLimit to the API
-    });
+    const response = await MakeAuthenticationRequest(
+      "/referral/getreferrals",
+      "POST",
+      {
+        depthLimit: depthLimit, // Send depthLimit to the API
+      }
+    );
     return response.data; // Only return the relevant part of the response
   } catch (error) {
     console.error("Error fetching referral list:", error);
@@ -102,8 +117,11 @@ export const getReferralList = async (depthLimit) => {
 
 export const getDashboard = async () => {
   try {
-    const response = await MakeAuthenticationRequest("/user/get-dashboard", "GET");
-    return response.data;  // Only return the relevant part of the response
+    const response = await MakeAuthenticationRequest(
+      "/user/get-dashboard",
+      "GET"
+    );
+    return response.data; // Only return the relevant part of the response
   } catch (error) {
     console.error("Error fetching dashboard data:", error);
     throw error;
@@ -112,10 +130,46 @@ export const getDashboard = async () => {
 
 export const getPackages = async () => {
   try {
-    const response = await MakeAuthenticationRequest("/package/get-all-package", "GET");
-    return response.data;  // Only return the relevant part of the response
+    const response = await MakeAuthenticationRequest(
+      "/package/get-all-package",
+      "GET"
+    );
+    return response.data; // Only return the relevant part of the response
   } catch (error) {
     console.error("Error fetching packages:", error);
+    throw error;
+  }
+};
+
+export const getTransactions = async (transactionRemark, type) => {
+  try {
+    const requestBody = {
+      transactionRemark: transactionRemark,
+      type: type,
+    };
+
+    const response = await MakeAuthenticationRequest(
+      "/transaction/get-transaction",
+      "POST",
+      requestBody
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching transactions:", error);
+    throw error;
+  }
+};
+
+export const getTeamBusiness = async () => {
+  try {
+    const response = await MakeAuthenticationRequest(
+      "/referral/get-team-business",
+      "GET"
+    );
+    return response.data; // Only return the relevant part of the response
+  } catch (error) {
+    console.error("Error fetching Team Business:", error);
     throw error;
   }
 };

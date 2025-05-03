@@ -40,10 +40,10 @@
 }
 
 .navbar-item a,
-.navbar-dropdown > span {
+.navbar-dropdown  span {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 8px;
   font-weight: 500;
   color: var(--text-light);
@@ -61,6 +61,33 @@
 .navbar-dropdown span:hover {
   background-color: var(--primary-light-bg);
   color: var(--primary-color);
+}
+
+.navbar .dropdown-arrow {
+  transition: transform 0.3s ease; /* Smooth transition for rotation */
+}
+
+.navbar .dropdown-arrow.rotated {
+  transform: rotate(180deg); /* Rotate the arrow when active */
+}
+
+.dropdown-item a{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  font-weight: 500;
+  color: var(--text-light);
+  font-family: var(--popp);
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.dropdown-item a svg{
+  font-size: 12px;
+  color: var(--text-light);
 }
 
 .navbar-dropdown {

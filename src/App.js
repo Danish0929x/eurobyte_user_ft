@@ -6,6 +6,10 @@ import { ToastContainer } from "react-toastify";
 import Register from "./pages/register/Register";
 import Profile from "./pages/profile/Profile";
 import Team from "./pages/team/Team";
+import TeamBusiness from "./pages/team/TeamBusiness";
+import DirectBonus from "./pages/income/DirectBonus";
+import ROI from "./pages/income/ROI";
+import GrowthLevel from "./pages/income/GrowthLevel";
 
 function App() {
   return (
@@ -17,8 +21,12 @@ function App() {
 
         <Route element={<PrivateRouter />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/direct-bonus" element={<DirectBonus />} />
+          <Route path="/roi" element={<ROI />} />
+          <Route path="/growth-level" element={<GrowthLevel />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/team" element={<Team />} />
+          <Route path="/team-business" element={<TeamBusiness />} />
         </Route>
       </Routes>
 

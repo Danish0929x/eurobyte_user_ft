@@ -1,24 +1,61 @@
-import { FiHome, FiUser, FiSettings, FiLogOut, FiShield, FiUserCheck, FiUsers } from "react-icons/fi";
+import { FaMoneyBillAlt, FaRegChartBar, FaLayerGroup, FaUserAlt } from "react-icons/fa"; // Hollow icons
+import { FaRegCircleUser } from "react-icons/fa6";
+import { FiHome, FiUser, FiLogOut, FiUsers } from "react-icons/fi"; // Outline icons
+import { HiOutlineUsers } from "react-icons/hi";
+import { MdAttachMoney } from "react-icons/md";
+import { RiMoneyDollarCircleLine } from "react-icons/ri"; // Hollow money icon
 
 export const menuItems = [
   {
     label: "Dashboard",
-    icon: <FiHome size={18} />,
+    icon: <FiHome size={18} />, // Outline home icon
     path: "/dashboard",
   },
   {
     label: "Profile",
-    icon: <FiUser size={18} />,
+    icon: <FaRegCircleUser size={18} />, // Outline user icon
     path: "/profile",
   },
   {
-    label: "Team",  // Added Team section
-    icon: <FiUsers size={18} />,  // Using FiUsers icon for Team
-    path: "/team",  // The path to the Team page
+    label: "Income",  // Dropdown item
+    icon: <RiMoneyDollarCircleLine size={18} />, // Hollow money dollar icon
+    dropdown: [
+      {
+        label: "Direct Bonus",
+        path: "/direct-bonus",
+        icon: <MdAttachMoney size={14} /> // Hollow money bill icon for Direct Bonus
+      },
+      {
+        label: "ROI Income",
+        path: "/roi",
+        icon: <FaRegChartBar size={14} /> // Hollow chart icon for ROI Income
+      },
+      {
+        label: "Growth Level Bonus",
+        path: "/growth-level",
+        icon: <HiOutlineUsers size={14} /> // Hollow group icon for Growth Level Bonus
+      },
+    ]
+  },
+  {
+    label: "Team",  
+    icon: <FiUsers size={18} />, // Outline users icon for Team
+    dropdown: [
+      {
+        label: "My Team",
+        path: "/team",
+        icon: <FaUserAlt size={14} /> // Hollow user icon for My Team
+      },
+      {
+        label: "Team Business",
+        path: "/team-business",
+        icon: <FaRegChartBar size={14} /> // Hollow chart icon for Team Business
+      }
+    ]
   },
   {
     label: "Logout",
-    icon: <FiLogOut size={18} />,
+    icon: <FiLogOut size={18} />, // Outline log-out icon
     path: "/login",
   },
 ];
