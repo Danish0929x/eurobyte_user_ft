@@ -10,6 +10,8 @@ import TeamBusiness from "./pages/team/TeamBusiness";
 import DirectBonus from "./pages/income/DirectBonus";
 import ROI from "./pages/income/ROI";
 import GrowthLevel from "./pages/income/GrowthLevel";
+import USDTWallet from "./pages/wallet/USDTWallet";
+import USDTWithdraw from "./pages/wallet/USDTWithdawal";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         <Route element={<PrivateRouter />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/direct-bonus" element={<DirectBonus />} />
+          <Route path="/usdt-wallet" element={<USDTWallet />} />
+          <Route path="/usdt-withdraw" element={<USDTWithdraw />} />
           <Route path="/roi" element={<ROI />} />
           <Route path="/growth-level" element={<GrowthLevel />} />
           <Route path="/profile" element={<Profile />} />

@@ -173,3 +173,29 @@ export const getTeamBusiness = async () => {
     throw error;
   }
 };
+
+
+export const getWallet = async () => {
+  try {
+    const response = await MakeAuthenticationRequest("/user/get-wallet", "GET");
+
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching transactions:", error);
+    throw error;
+  }
+};
+
+export const withdrawUSDT = async (amount) => {
+  try {
+    const response = await MakeAuthenticationRequest(
+      "/withdraw/withdraw-request",
+      "POST",
+      amount
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error submitting withdrawal:", error);
+    throw error;
+  }
+};

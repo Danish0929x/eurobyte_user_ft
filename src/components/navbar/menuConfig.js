@@ -1,4 +1,4 @@
-import { FaMoneyBillAlt, FaRegChartBar, FaLayerGroup, FaUserAlt } from "react-icons/fa"; // Hollow icons
+import { FaMoneyBillAlt, FaRegChartBar, FaLayerGroup, FaUserAlt, FaWallet, FaDollarSign } from "react-icons/fa"; // Hollow icons
 import { FaRegCircleUser } from "react-icons/fa6";
 import { FiHome, FiUser, FiLogOut, FiUsers } from "react-icons/fi"; // Outline icons
 import { HiOutlineUsers } from "react-icons/hi";
@@ -23,17 +23,17 @@ export const menuItems = [
       {
         label: "Direct Bonus",
         path: "/direct-bonus",
-        icon: <MdAttachMoney size={14} /> // Hollow money bill icon for Direct Bonus
+        icon: <MdAttachMoney size={18} /> // Hollow money bill icon for Direct Bonus
       },
       {
         label: "ROI Income",
         path: "/roi",
-        icon: <FaRegChartBar size={14} /> // Hollow chart icon for ROI Income
+        icon: <FaRegChartBar size={18} /> // Hollow chart icon for ROI Income
       },
       {
         label: "Growth Level Bonus",
         path: "/growth-level",
-        icon: <HiOutlineUsers size={14} /> // Hollow group icon for Growth Level Bonus
+        icon: <HiOutlineUsers size={18} /> // Hollow group icon for Growth Level Bonus
       },
     ]
   },
@@ -44,13 +44,29 @@ export const menuItems = [
       {
         label: "My Team",
         path: "/team",
-        icon: <FaUserAlt size={14} /> // Hollow user icon for My Team
+        icon: <FaUserAlt size={18} /> // Hollow user icon for My Team
       },
       {
         label: "Team Business",
         path: "/team-business",
-        icon: <FaRegChartBar size={14} /> // Hollow chart icon for Team Business
+        icon: <FaRegChartBar size={18} /> // Hollow chart icon for Team Business
       }
+    ]
+  },
+  {
+    label: "Wallet",               // New Wallet dropdown
+    icon: <FaWallet size={18} />,
+    dropdown: [
+      {
+        label: "USDT Wallet",
+        path: "/usdt-wallet",
+        icon: <FaDollarSign size={18} />,
+      },
+      {
+        label: "USDT Withdraw",
+        path: "/usdt-withdraw",
+        icon: <FaDollarSign size={18} />,
+      },
     ]
   },
   {

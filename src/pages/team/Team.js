@@ -36,7 +36,7 @@ function Team() {
         name: member.name || "none",
         referrer: member.referrer || "none",
         registrationDate: formatDate(member.registrationDate) || "none",
-        investmentAmount: member.InvestedAmount || 0,
+        investmentAmount: member.investmentAmount || 0,
         level: member.level,
       }));
 

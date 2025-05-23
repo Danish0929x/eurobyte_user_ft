@@ -1,62 +1,80 @@
-import React, { use, useState } from "react";
+// src/components/Login/index.jsx
+import React, { useState, useEffect } from "react";
 import logo from "../../Assets/Images/logo-main.png";
 import "./style.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { login } from "../../service/Auth.js";
 
-function Login() {
-  const [formData, setFormData] = useState({
-    userId: "",
-    password: ""
-  });
+/**
+ * submitLogin
+ * - handles the core login flow
+ * - returns true if login succeeded
+ */
+export async function submitLogin(
+  { userId, password },
+  { setIsPending, navigate, toast }
+) {
+  if (!userId || !password) {
+    toast.warn("All fields are required!");
+    return false;
+  }
 
+  setIsPending(true);
+  try {
+    console.log("Submitting login form with:", { userId, password });
+    const userData = await login(userId.toUpperCase(), password);
+
+    if (userData) {
+      localStorage.setItem("userData", JSON.stringify(userData));
+      localStorage.setItem("userId", userId);
+      toast.success("Login successful!");
+      navigate("/dashboard");
+      return true;
+    }
+  } catch (error) {
+    toast.error(error.message);
+  } finally {
+    setIsPending(false);
+  }
+
+  return false;
+}
+
+function Login() {
+  const [formData, setFormData] = useState({ userId: "", password: "" });
   const [isPending, setIsPending] = useState(false);
   const [visible, setVisible] = useState(false);
+
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleLogin = async () => {
-    const { userId, password } = formData;
+  const handleLogin = () =>
+    submitLogin(formData, { setIsPending, navigate, toast });
 
-    if (userId === "" || password === "") {
-      toast.warn("All fields are required!");
-      return;
+  // On mount: read ?userId=…&password=… and auto-login
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const userId = params.get("userId");
+    const password = params.get("password");
+
+    if (userId && password) {
+      setFormData({ userId, password });
+      submitLogin({ userId, password }, { setIsPending, navigate, toast });
     }
-
-    setIsPending(true);
-
-    try {
-      console.log("Submitting login form with:", formData); // ✅ Console log added
-      const userData = await login(userId.toUpperCase(), password);
-
-      if (userData) {
-        localStorage.setItem("userData", JSON.stringify(userData));
-        localStorage.setItem("userId", userId);  // Save userId
-
-        toast.success("Login successful!");
-        navigate("/dashboard"); // Redirect after login
-      }
-    } catch (error) {
-      toast.error(error.message);
-    } finally {
-      setIsPending(false);
-    }
-  };
+  }, [location.search]);
 
   return (
     <div className="login">
       <div className="login-first">
-        <img className="login-logo" alt="logo-i" src={logo} />
+        <img className="login-logo" alt="logo" src={logo} />
       </div>
       <div className="login-main">
         <div className="loma-first">
@@ -66,7 +84,7 @@ function Login() {
 
         <div className="loma-second">
           <div className="input-group-2">
-            <label>Member Id</label>
+            <label>User Id</label>
             <input
               type="text"
               name="userId"
@@ -86,7 +104,7 @@ function Login() {
               onChange={handleInputChange}
               required
             />
-            <div className="eye" onClick={() => setVisible(prev => !prev)}>
+            <div className="eye" onClick={() => setVisible((v) => !v)}>
               {visible ? <AiFillEye /> : <AiFillEyeInvisible />}
             </div>
           </div>
@@ -97,11 +115,7 @@ function Login() {
         </div>
 
         <div className="loma-fourth">
-          <button
-            type="button"
-            onClick={handleLogin}
-            disabled={isPending}
-          >
+          <button type="button" onClick={handleLogin} disabled={isPending}>
             {isPending ? "Loading..." : "Login"}
           </button>
         </div>

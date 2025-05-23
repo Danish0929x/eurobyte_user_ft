@@ -66,14 +66,22 @@ function Navbar() {
                   <span onClick={() => toggleDropdown(index)}>
                     {item.icon} {item.label} 
                     <FaChevronDown
-                      className={`dropdown-arrow ${activeDropdown === index ? "rotated" : ""}`}
+                      className={`dropdown-arrow ${
+                        activeDropdown === index ? "rotated" : ""
+                      }`}
                     />
                   </span>
                   {activeDropdown === index && (
                     <ul className="dropdown-menu">
                       {item.dropdown.map((subItem, subIdx) => (
                         <li key={subIdx} className="dropdown-item">
-                          <Link to={subItem.path} onClick={closeMenu}>
+                          <Link
+                            to={subItem.path}
+                            onClick={() => {
+                              closeMenu(); // Close the menu on link click
+                              setActiveDropdown(null); // Close the dropdown on link click
+                            }}
+                          >
                             {subItem.icon} {subItem.label}
                           </Link>
                         </li>
@@ -82,7 +90,10 @@ function Navbar() {
                   )}
                 </div>
               ) : (
-                <Link to={item.path} onClick={closeMenu}>
+                <Link
+                  to={item.path}
+                  onClick={closeMenu}
+                >
                   {item.icon} {item.label}
                 </Link>
               )}

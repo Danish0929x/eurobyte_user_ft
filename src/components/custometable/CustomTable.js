@@ -10,11 +10,11 @@ import { AiOutlineSearch } from "react-icons/ai";
 import "./style.css"; // custom styles or Tailwind
 
 function CustomTable(props) {
-  const memoColumns = useMemo(() => props.columns, []);
-  const memoRows = useMemo(() => props.data, []);
+  const memoColumns = useMemo(() => props.columns, [props.columns]);
+  const memoRows = useMemo(() => props.data, [props.data]);
 
   const {
-    getTableProps, 
+    getTableProps,
     getTableBodyProps,
     headerGroups,
     page,
@@ -57,9 +57,15 @@ function CustomTable(props) {
       <div className="table-main">
         <div className="table-inner">
           {rows.length === 0 ? (
-            <p style={{textAlign: "center", padding: "20px 10px", borderBottom: "1px solid var(--primary-border)"}}>No data available</p>
+            <p style={{
+              textAlign: "center",
+              padding: "20px 10px",
+              borderBottom: "1px solid var(--primary-border)",
+            }}>
+              No data available
+            </p>
           ) : (
-            <table {...getTableProps()} responsive className="table-body">
+            <table {...getTableProps()} className="table-body">
               <thead>
                 {headerGroups.map((headerGroup) => (
                   <tr {...headerGroup.getHeaderGroupProps()}>
@@ -86,8 +92,15 @@ function CustomTable(props) {
                   return (
                     <tr {...row.getRowProps()}>
                       {row.cells.map((cell) => {
+                        const cellValue = cell.value;
                         return (
-                          <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                          <td {...cell.getCellProps()}>
+                            {typeof cellValue === 'number'
+                              ? Number.isInteger(cellValue)
+                                ? cellValue
+                                : cellValue.toFixed(3)
+                              : cell.render("Cell")}
+                          </td>
                         );
                       })}
                     </tr>
@@ -115,31 +128,15 @@ function CustomTable(props) {
               {">>"}
             </button>
           </div>
-          {/* <div className="tb-center">
-            <span>
-              Go to page:{" "}
-              <input
-                type="number"
-                defaultValue={pageIndex + 1}
-                onChange={(e) => {
-                  const pageNumber = e.target.value
-                    ? Number(e.target.value) - 1
-                    : 0;
-                  gotoPage(pageNumber);
-                }}
-                style={{ width: "50px" }}
-              />
-            </span>
-          </div> */}
           <div className="tb-right">
             <label>Total Entries: {rows.length}</label>
             <select
               value={pageSize}
               onChange={(e) => setPageSize(Number(e.target.value))}
             >
-              {[10, 25, 50].map((pageSize) => (
-                <option key={pageSize} value={pageSize}>
-                  Show {pageSize}
+              {[10, 25, 50].map((size) => (
+                <option key={size} value={size}>
+                  Show {size}
                 </option>
               ))}
             </select>
