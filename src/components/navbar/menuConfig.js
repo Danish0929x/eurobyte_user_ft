@@ -70,6 +70,22 @@ export const menuItems = [
     ]
   },
   {
+    label: "Deposit",               // New Wallet dropdown
+    icon: <FaWallet size={18} />,
+    dropdown: [
+      {
+        label: "Deposit Wallet",
+        path: "/deposit",
+        icon: <FaDollarSign size={18} />,
+      },
+      {
+        label: "Buy Package",
+        path: "/buy-package",
+        icon: <FaDollarSign size={18} />,
+      },
+    ]
+  },
+  {
     label: "Logout",
     icon: <FiLogOut size={18} />, // Outline log-out icon
     path: "/login",

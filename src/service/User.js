@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const apiURL = "http://localhost:5000/api";
-const apiURL = "https://eurobytebackend.onrender.com/api";
+const apiURL = "http://localhost:5000/api";
+// const apiURL = "https://eurobytebackend.onrender.com/api";
 
 // Authenticated request (requires token)
 export const MakeAuthenticationRequest = async (
@@ -196,6 +196,20 @@ export const withdrawUSDT = async (amount) => {
     return response.data;
   } catch (error) {
     console.error("Error submitting withdrawal:", error);
+    throw error;
+  }
+};
+
+export const depositUSDT = async (depositData) => {
+  try {
+    const response = await MakeAuthenticationRequest(
+      "/deposit-usdt",
+      "POST",
+      depositData
+    );
+    return response;
+  } catch (error) {
+    console.error("Error submitting deposit:", error);
     throw error;
   }
 };

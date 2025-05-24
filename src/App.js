@@ -12,6 +12,7 @@ import ROI from "./pages/income/ROI";
 import GrowthLevel from "./pages/income/GrowthLevel";
 import USDTWallet from "./pages/wallet/USDTWallet";
 import USDTWithdraw from "./pages/wallet/USDTWithdawal";
+import Deposit from "./pages/deposit/Deposit";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/usdt-withdraw" element={<USDTWithdraw />} />
           <Route path="/roi" element={<ROI />} />
           <Route path="/growth-level" element={<GrowthLevel />} />
+          <Route path="/deposit" element={<Deposit />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/team" element={<Team />} />
           <Route path="/team-business" element={<TeamBusiness />} />
